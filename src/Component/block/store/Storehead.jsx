@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FcLike, FcLikePlaceholder } from "react-icons/fc";
-import { FiShoppingCart } from "react-icons/fi";
 
 const Store = () => {
   const [products, setProducts] = useState([]);
@@ -28,8 +27,8 @@ const Store = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f0f4f8] to-[#e2e8f0] px-4 py-10 pt-36">
-      <h1 className="text-5xl font-extrabold text-center mb-14 text-gray-800">
+    <div className="min-h-screen bg-[#f7f9fc] px-4 py-10 pt-36">
+      <h1 className="text-4xl font-bold text-center mb-12">
         🛍️ PiggyVest Universal Store
       </h1>
 
@@ -37,16 +36,16 @@ const Store = () => {
         {products.map((product) => (
           <div
             key={product.id}
-            className="relative bg-white border border-gray-200 shadow-md rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-blue-400"
+            className="relative bg-white shadow-lg rounded-2xl overflow-hidden group transition hover:shadow-2xl"
           >
             <div
               onClick={() => toggleLike(product.id)}
-              className="absolute top-4 right-4 z-10 cursor-pointer text-2xl transition-transform duration-300 hover:scale-110"
+              className="absolute top-3 right-3 z-10 cursor-pointer text-2xl"
             >
               {likedItems[product.id] ? <FcLike /> : <FcLikePlaceholder />}
             </div>
 
-            <div className="w-full h-60 bg-gray-50 flex items-center justify-center">
+            <div className="w-full h-56 bg-gray-100 flex items-center justify-center">
               <img
                 src={product.image}
                 alt={product.title}
@@ -54,23 +53,22 @@ const Store = () => {
               />
             </div>
 
-            <div className="p-5 flex flex-col justify-between h-[220px]">
-              <h2 className="text-base font-semibold text-gray-900 mb-2">
+            <div className="p-5 flex flex-col justify-between h-[200px]">
+              <h2 className="text-sm font-semibold text-gray-800">
                 {product.title.length > 40
                   ? product.title.slice(0, 40) + "..."
                   : product.title}
               </h2>
 
-              <span className="text-xs border border-blue-500 text-blue-600 px-2 py-0.5 rounded-full w-fit mb-2 uppercase tracking-wide font-medium">
+              <span className="inline-block mt-2 text-xs bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full w-fit">
                 {product.category}
               </span>
 
-              <div className="mt-auto flex justify-between items-center">
-                <span className="text-lg font-bold text-gray-800">
-                  ${product.price.toFixed(2)}
+              <div className="mt-4 flex justify-between items-center">
+                <span className="text-xl font-bold text-gray-900">
+                  ${product.price}
                 </span>
-                <button className="flex items-center gap-2 bg-blue-600 text-white text-sm px-4 py-2 rounded-md hover:bg-blue-700 transition">
-                  <FiShoppingCart className="text-base" />
+                <button className="bg-black text-white text-sm px-4 py-2 rounded-lg hover:bg-gray-800 transition">
                   Add to Cart
                 </button>
               </div>
